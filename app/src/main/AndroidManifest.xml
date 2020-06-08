@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme">
 
         <!--Activities-->
-        <activity android:name=".MainActivity">
+        <activity android:name=".MapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

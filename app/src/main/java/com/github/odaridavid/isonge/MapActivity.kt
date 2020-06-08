@@ -15,4 +15,4 @@ package com.github.odaridavid.isonge
 
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity(R.layout.activity_main)
+class MapActivity : AppCompatActivity(R.layout.activity_map)
