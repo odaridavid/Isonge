@@ -60,6 +60,21 @@ android {
         }
 
     }
+
+    flavorDimensions "roles"
+    productFlavors {
+        driver {
+            dimension "roles"
+            applicationIdSuffix ".driver"
+            versionNameSuffix "-driver"
+        }
+
+        rider {
+            dimension "roles"
+            applicationIdSuffix ".rider"
+            versionNameSuffix "-rider"
+        }
+    }
 }
 
 dependencies {
