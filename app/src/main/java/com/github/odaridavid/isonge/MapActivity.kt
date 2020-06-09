@@ -3,6 +3,7 @@ package com.github.odaridavid.isonge
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -22,15 +23,24 @@ class MapActivity : AppCompatActivity(R.layout.activity_map), OnMapReadyCallback
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        if (versionFrom(Build.VERSION_CODES.M)) {
+            window.decorView.systemUiVisibility = setSystemIconsVisibilityOnWhite()
+            setSystemBarsToWhite()
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            window.statusBarColor = getColor(android.R.color.background_light)
-            window.navigationBarColor = getColor(android.R.color.background_light)
-        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun setSystemIconsVisibilityOnWhite(): Int =
+        if (versionFrom(Build.VERSION_CODES.O))
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        else
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun setSystemBarsToWhite() {
+        window.statusBarColor = getColor(android.R.color.background_light)
+        window.navigationBarColor = getColor(android.R.color.background_light)
     }
 
 
