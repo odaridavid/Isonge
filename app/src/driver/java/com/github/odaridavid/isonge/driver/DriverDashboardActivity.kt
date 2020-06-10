@@ -10,10 +10,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class DriverDashboardActivity : BaseActivity(), OnMapReadyCallback {
+internal class DriverDashboardActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
