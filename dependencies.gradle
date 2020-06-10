@@ -36,6 +36,10 @@ ext {
     coreVersion = '1.3.0'
     appCompatVersion = '1.1.0'
     constraintLayout = '1.1.3'
+    legacyV4Version = '1.0.0'
+
+    //Design Libs and Artifacts Versions
+    materialVersion = '1.2.0-beta01'
 
     //Google API Versions
     mapsVersion = "17.0.0"
@@ -50,17 +54,24 @@ ext {
             core            : "androidx.core:core-ktx:$coreVersion",
             appCompat       : "androidx.appcompat:appcompat:$appCompatVersion",
             constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayout",
+            legacy_v4       : "androidx.legacy:legacy-support-v4:$legacyV4Version",
+
+    ]
+
+    //Design
+    design = [
+            material : "com.google.android.material:material:$materialVersion"
     ]
 
     //Kotlin
     kotlin = [
             stdlib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
-            gradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+            gradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
     ]
 
     //Google APIs
     google = [
-            maps: "com.google.android.gms:play-services-maps:$mapsVersion"
+            maps: "com.google.android.gms:play-services-maps:$mapsVersion",
     ]
 
 }

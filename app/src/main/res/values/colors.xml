@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fafafa</color>
-    <color name="colorPrimaryDark">#c7c7c7</color>
-    <color name="colorPrimaryLight">#ffffff</color>
-    <color name="colorOnPrimary">#000000</color>
+    <!--Theme Context Colors-->
+    <color name="colorPrimary">@color/colorGrey50</color>
+    <color name="colorPrimaryDark">@color/colorGrey50Dark</color>
+    <color name="colorPrimaryLight">@color/colorGrey50Light</color>
+    <color name="colorOnPrimary">@color/colorGrey900Dark</color>
 
-    <color name="colorSecondary">#7c4dff</color>
-    <color name="colorSecondaryDark">#3f1dcb</color>
-    <color name="colorSecondaryLight">#b47cff</color>
-    <color name="colorOnSecondary">#ffffff</color>
+    <color name="colorSecondary">@color/colorGreenA400</color>
+    <color name="colorSecondaryDark">@color/colorGreenA400Dark</color>
+    <color name="colorSecondaryLight">@color/colorGreenA400Light</color>
+    <color name="colorOnSecondary">@color/colorGrey50Light</color>
 
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorError">@color/colorPink700</color>
+    <color name="colorOnError">@color/colorGrey50Light</color>
+
+    <!--Color References-->
+    <color name="colorGrey50Light">#ffffff</color>
+    <color name="colorGrey50">#fafafa</color>
+    <color name="colorGrey50Dark">#c7c7c7</color>
+    <color name="colorGrey900Dark">#000000</color>
+    <color name="colorGreenA400">#00e676</color>
+    <color name="colorGreenA400Dark">#00b248</color>
+    <color name="colorGreenA400Light">#66ffa6</color>
+    <color name="colorPink700">#8c0032</color>
+
 </resources>
