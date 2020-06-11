@@ -11,6 +11,9 @@
     <color name="colorSecondaryLight">@color/colorGreenA400Light</color>
     <color name="colorOnSecondary">@color/colorGrey50Light</color>
 
+    <color name="colorSurface">@color/colorGrey50</color>
+    <color name="colorOnSurface">@color/colorGrey900Dark</color>
+
     <color name="colorError">@color/colorPink700</color>
     <color name="colorOnError">@color/colorGrey50Light</color>
 

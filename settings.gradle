@@ -1,3 +1,4 @@
+include ':theme'
 include ':location'
 include ':app'
 rootProject.name = "Isonge"

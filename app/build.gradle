@@ -81,10 +81,10 @@ dependencies {
     def deps = rootProject.ext
 
     implementation project(':location')
+    implementation project(':theme')
     implementation deps.kotlin.stdlib
     implementation deps.androidx.core
     implementation deps.androidx.appCompat
     implementation deps.androidx.constraintLayout
     implementation deps.google.maps
-    implementation deps.design.material
 }
