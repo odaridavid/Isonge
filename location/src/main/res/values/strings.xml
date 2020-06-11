@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Label on permission request view-->
+    <string name="label_allow">Allow</string>
+    <string name="label_deny">Deny</string>
+
+    <!-- Permissions Rationale-->
+    <string name="title_fine_location_permission">Foreground Location Permission</string>
+    <string name="description_fine_location_permission">
+        To receive frequent location updates, relevant location information and an enhanced app
+        experience,enable the location permission.
+    </string>
+</resources>

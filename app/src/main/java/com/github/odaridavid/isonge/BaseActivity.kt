@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.github.odaridavid.isonge.location.ILocationPermissionRationaleListener
+import com.github.odaridavid.isonge.location.permissions.ForegroundLocationPermissionsHandler
 
-internal abstract class BaseActivity : AppCompatActivity() {
+internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionRationaleListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,4 +31,48 @@ internal abstract class BaseActivity : AppCompatActivity() {
         window.statusBarColor = getColor(android.R.color.background_light)
         window.navigationBarColor = getColor(android.R.color.background_light)
     }
+
+    override fun onResume() {
+        super.onResume()
+        handleForegroundLocationPermissions()
+    }
+
+    fun handleForegroundLocationPermissions() {
+        val permHandler = ForegroundLocationPermissionsHandler(this)
+        if (!permHandler.hasPermissions()) {
+            if (permHandler.shouldShowRationale()) {
+                showRationale()
+            } else {
+                permHandler.requestPermissions()
+            }
+        } else {
+            removeRationale()
+            showCurrentLocation()
+        }
+    }
+
+    override fun onRationaleAllowPermissionRequest() {
+        val permHandler = ForegroundLocationPermissionsHandler(this)
+        permHandler.requestPermissions()
+    }
+
+    override fun onRationaleDenyPermissionRequest() {
+        removeRationale()
+        //TODO Provide alternative or show something showing permission is needed without impacting ux
+    }
+
+    /**
+     * Centers in on users current location
+     */
+    abstract fun showCurrentLocation()
+
+    /**
+     * If foreground location permission is not granted show rationale
+     */
+    abstract fun showRationale()
+
+    /**
+     * If foreground location permission is granted remove rationale
+     */
+    abstract fun removeRationale()
 }

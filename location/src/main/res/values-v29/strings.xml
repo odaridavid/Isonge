@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Permissions Rationale-->
+    <string name="title_background_location_permission">Background Location Notifications</string>
+    <string name="description_background_location_permission">
+        To receive relevant location related updates once you leave the app and also an enhanced app
+        experience,enable the background location permission.
+    </string>
+</resources>
