@@ -1,11 +1,12 @@
 package com.github.odaridavid.isonge.driver
 
 import android.os.Bundle
-import android.view.View
 import com.github.odaridavid.isonge.BaseActivity
 import com.github.odaridavid.isonge.R
 import com.github.odaridavid.isonge.databinding.ActivityDriverDashboardBinding
 import com.github.odaridavid.isonge.location.fragment.PermissionsRationaleFragment
+import com.github.odaridavid.isonge.remove
+import com.github.odaridavid.isonge.show
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -59,11 +60,11 @@ internal class DriverDashboardActivity : BaseActivity(), OnMapReadyCallback {
                 )
         fragTrans.add(R.id.permissions_fragment, fragment)
         fragTrans.commit()
-        binding.permissionsFragment.visibility = View.VISIBLE
+        binding.permissionsFragment.show()
     }
 
     override fun removeRationale() {
-        binding.permissionsFragment.visibility = View.GONE
+        binding.permissionsFragment.remove()
     }
 
 }
