@@ -13,14 +13,19 @@
  **/
 package com.github.odaridavid.isonge.location
 
-import android.location.Location
+import com.github.odaridavid.isonge.location.model.LastKnownCoordinates
 
 
 interface ILocationObserver {
 
     /**
-     * Called with the updated location information
+     * Called when new location updates are triggered passing in the latest values
      */
-    fun onLocationChange(location: Location)
+    fun onLocationChange(lastKnownCoordinates: LastKnownCoordinates)
+
+    /**
+     * Called when an error occurs while waiting for location updates
+     */
+    fun onLocationChangeError(exception: Exception)
 
 }

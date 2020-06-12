@@ -6,9 +6,14 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.github.odaridavid.isonge.location.ILocationPermissionRationaleListener
+import com.github.odaridavid.isonge.location.ILocationPermissionsHandler
 import com.github.odaridavid.isonge.location.permissions.ForegroundLocationPermissionsHandler
 
 internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionRationaleListener {
+
+    val permHandler: ILocationPermissionsHandler by lazy {
+        ForegroundLocationPermissionsHandler(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +43,6 @@ internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionR
     }
 
     fun handleForegroundLocationPermissions() {
-        val permHandler = ForegroundLocationPermissionsHandler(this)
         if (!permHandler.hasPermissions()) {
             if (permHandler.shouldShowRationale()) {
                 showRationale()
@@ -47,7 +51,7 @@ internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionR
             }
         } else {
             removeRationale()
-            showCurrentLocation()
+            showLastKnownLocation()
         }
     }
 
@@ -62,9 +66,9 @@ internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionR
     }
 
     /**
-     * Centers in on users current location
+     * Centers in on users last known location
      */
-    abstract fun showCurrentLocation()
+    abstract fun showLastKnownLocation()
 
     /**
      * If foreground location permission is not granted show rationale

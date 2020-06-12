@@ -11,7 +11,9 @@
  * the License.
  *
  **/
-package com.github.odaridavid.isonge.location.model
+package com.github.odaridavid.isonge.driver
 
 
-data class LastKnownCoordinates(val latitude: Double, val longitude: Double)
+object Constants {
+    const val SHARED_PREF_KEY = "isonge_driver_pref"
+}

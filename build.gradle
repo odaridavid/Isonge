@@ -20,8 +20,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath rootProject.ext.androidStudio.gradlePlugin
-        classpath rootProject.ext.kotlin.gradlePlugin
+        classpath rootProject.ext.gradlePlugins.androidStudio
+        classpath rootProject.ext.gradlePlugins.kotlin
+        classpath rootProject.ext.gradlePlugins.googleServices
     }
 }
 

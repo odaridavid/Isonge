@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply from: '../android-library.gradle'
 
 dependencies {
+
     def deps = rootProject.ext
 
     implementation project(':theme')
@@ -12,4 +13,5 @@ dependencies {
     implementation deps.androidx.appCompat
     implementation deps.androidx.legacy_v4
     implementation deps.androidx.constraintLayout
+    implementation deps.google.location
 }

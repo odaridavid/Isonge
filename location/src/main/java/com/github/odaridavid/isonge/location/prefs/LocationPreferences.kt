@@ -25,8 +25,8 @@ internal class LocationPreferences(
     override fun setLastKnownCoordinates(lastKnownCoordinates: LastKnownCoordinates) {
         val editor = sharedPreferences.edit()
         with(editor) {
-            putFloat(LATITUDE_KEY, lastKnownCoordinates.latitude)
-            putFloat(LONGITUDE_KEY, lastKnownCoordinates.longitude)
+            putFloat(LATITUDE_KEY, lastKnownCoordinates.latitude.toFloat())
+            putFloat(LONGITUDE_KEY, lastKnownCoordinates.longitude.toFloat())
             apply()
         }
     }
@@ -34,7 +34,7 @@ internal class LocationPreferences(
     override fun getLastKnownCoordinates(): LastKnownCoordinates {
         val latitude = sharedPreferences.getFloat(LATITUDE_KEY, DEFAULT_COORDINATES)
         val longitude = sharedPreferences.getFloat(LONGITUDE_KEY, DEFAULT_COORDINATES)
-        return LastKnownCoordinates(latitude, longitude)
+        return LastKnownCoordinates(latitude.toDouble(), longitude.toDouble())
     }
 
     companion object {

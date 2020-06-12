@@ -11,7 +11,13 @@
  * the License.
  *
  **/
-package com.github.odaridavid.isonge.location.model
+package com.github.odaridavid.isonge.location
 
 
-data class LastKnownCoordinates(val latitude: Double, val longitude: Double)
+interface ILocationManager {
+
+    fun getCurrentLocation()
+
+    fun getLastSavedLocation()
+
+}
