@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/permission_request_card_radius"
     app:cardElevation="@dimen/permission_request_card_elevation"
-    tools:context=".fragment.PermissionsRationaleFragment">
+    tools:context=".fragment.LocationPermissionsRationaleFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.github.odaridavid.isonge.location.ILocationPermissionRationaleListener
-import com.github.odaridavid.isonge.location.databinding.FragmentPermissionRationaleBinding
+import com.github.odaridavid.isonge.location.databinding.FragmentLocationPermissionRationaleBinding
 
 
-class PermissionsRationaleFragment : Fragment() {
+class LocationPermissionsRationaleFragment : Fragment() {
 
-    private lateinit var binding: FragmentPermissionRationaleBinding
+    private lateinit var binding: FragmentLocationPermissionRationaleBinding
     private lateinit var permissionRationaleListener: ILocationPermissionRationaleListener
 
     override fun onCreateView(
@@ -20,7 +20,7 @@ class PermissionsRationaleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPermissionRationaleBinding.inflate(layoutInflater)
+        binding = FragmentLocationPermissionRationaleBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -57,8 +57,8 @@ class PermissionsRationaleFragment : Fragment() {
             @StringRes permissionTitle: Int,
             @StringRes permissionDescription: Int,
             permissionRationaleListener: ILocationPermissionRationaleListener
-        ): PermissionsRationaleFragment {
-            return PermissionsRationaleFragment().apply {
+        ): LocationPermissionsRationaleFragment {
+            return LocationPermissionsRationaleFragment().apply {
                 this.permissionRationaleListener = permissionRationaleListener
                 arguments = Bundle().apply {
                     putInt(PERMISSION_TITLE_KEY, permissionTitle)
