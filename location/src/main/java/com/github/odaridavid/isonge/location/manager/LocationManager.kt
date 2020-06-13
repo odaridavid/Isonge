@@ -17,10 +17,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.location.Location
-import com.github.odaridavid.isonge.location.ILocationClient
-import com.github.odaridavid.isonge.location.ILocationManager
-import com.github.odaridavid.isonge.location.ILocationObserver
-import com.github.odaridavid.isonge.location.ILocationPermissionsHandler
+import com.github.odaridavid.isonge.location.*
 import com.github.odaridavid.isonge.location.model.LastKnownCoordinates
 import com.github.odaridavid.isonge.location.prefs.LocationPreferences
 import com.google.android.gms.location.*
@@ -43,6 +40,9 @@ class LocationManager(
             }
         }
     }
+    private val locationPreferences: ILocationPreferences by lazy {
+        LocationPreferences(sharedPreferences)
+    }
 
     @SuppressLint("MissingPermission")
     override fun getCurrentLocation() {
@@ -60,7 +60,7 @@ class LocationManager(
 
 
     override fun getLastSavedLocation() {
-        val coordinates = LocationPreferences(sharedPreferences).getLastKnownCoordinates()
+        val coordinates = locationPreferences.getLastKnownCoordinates()
         coordinates?.run {
             locationObserver.onLocationChange(coordinates)
         }
@@ -84,7 +84,7 @@ class LocationManager(
     private fun onLocationReceived(location: Location) {
         val coordinates = LastKnownCoordinates(location.latitude, location.longitude)
         locationObserver.onLocationChange(coordinates)
-        LocationPreferences(sharedPreferences).setLastKnownCoordinates(coordinates)
+        locationPreferences.setLastKnownCoordinates(coordinates)
     }
 
     private fun onLocationFailure(e: Exception) {
@@ -97,6 +97,5 @@ class LocationManager(
             return
         }
     }
-
 
 }
