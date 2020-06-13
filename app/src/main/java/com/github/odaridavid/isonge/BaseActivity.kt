@@ -2,13 +2,17 @@ package com.github.odaridavid.isonge
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.github.odaridavid.isonge.PermissionUtils.permissionGranted
+import com.github.odaridavid.isonge.SdkUtils.versionFrom
 import com.github.odaridavid.isonge.location.ILocationPermissionRationaleListener
 import com.github.odaridavid.isonge.location.ILocationPermissionsHandler
 import com.github.odaridavid.isonge.location.permissions.ForegroundLocationPermissionsHandler
 
+//TODO Check if rationale is being shown before running removeRationale()
 internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionRationaleListener {
 
     val permHandler: ILocationPermissionsHandler by lazy {
@@ -37,18 +41,26 @@ internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionR
         window.navigationBarColor = getColor(android.R.color.background_light)
     }
 
-    override fun onResume() {
-        super.onResume()
-        handleForegroundLocationPermissions()
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == ForegroundLocationPermissionsHandler.RQ_CODE) {
+            if ((grantResults.isNotEmpty() && grantResults.permissionGranted())) {
+                removeRationale()
+                showLastKnownLocation()
+            } else showRationale()
+        }
     }
 
     fun handleForegroundLocationPermissions() {
         if (!permHandler.hasPermissions()) {
-            if (permHandler.shouldShowRationale()) {
+            if (permHandler.shouldShowRationale())
                 showRationale()
-            } else {
+            else
                 permHandler.requestPermissions()
-            }
         } else {
             removeRationale()
             showLastKnownLocation()

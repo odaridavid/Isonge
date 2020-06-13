@@ -11,16 +11,21 @@
  * the License.
  *
  **/
-package com.github.odaridavid.isonge
+package com.github.odaridavid.isonge.location.utils
 
-import android.os.Build
-import androidx.annotation.IntRange
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
-internal object SdkUtils {
-    fun versionFrom(
-        @IntRange(
-            from = Build.VERSION_CODES.BASE.toLong(),
-            to = Build.VERSION_CODES.Q.toLong()
-        ) versionCode: Int
-    ): Boolean = Build.VERSION.SDK_INT >= versionCode
+
+object LocationUtils {
+
+    val isLocationEnabled: LiveData<Boolean>
+        get() = _isLocationEnabled
+
+    private val _isLocationEnabled = MutableLiveData<Boolean>()
+
+    fun setIsLocationEnabled(isEnabled: Boolean) {
+        _isLocationEnabled.value = isEnabled
+    }
+
 }

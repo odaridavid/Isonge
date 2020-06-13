@@ -15,15 +15,14 @@ package com.github.odaridavid.isonge
 
 import android.view.View
 
+internal object ViewUtils {
 
-internal fun View.hide() {
-    visibility = View.INVISIBLE
-}
+    fun View.show() {
+        visibility = View.VISIBLE
+    }
 
-internal fun View.show() {
-    visibility = View.VISIBLE
-}
+    fun View.remove() {
+        visibility = View.GONE
+    }
 
-internal fun View.remove() {
-    visibility = View.GONE
 }

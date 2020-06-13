@@ -11,16 +11,12 @@
  * the License.
  *
  **/
-package com.github.odaridavid.isonge
+package com.github.odaridavid.isonge.location
 
-import android.os.Build
-import androidx.annotation.IntRange
 
-internal object SdkUtils {
-    fun versionFrom(
-        @IntRange(
-            from = Build.VERSION_CODES.BASE.toLong(),
-            to = Build.VERSION_CODES.Q.toLong()
-        ) versionCode: Int
-    ): Boolean = Build.VERSION.SDK_INT >= versionCode
+interface ILocationClient {
+
+    fun subscribeToLocationUpdates()
+
+    fun unsubscribeFromLocationUpdates()
 }

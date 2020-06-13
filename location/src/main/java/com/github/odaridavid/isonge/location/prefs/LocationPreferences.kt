@@ -31,10 +31,11 @@ internal class LocationPreferences(
         }
     }
 
-    override fun getLastKnownCoordinates(): LastKnownCoordinates {
+    override fun getLastKnownCoordinates(): LastKnownCoordinates? {
         val latitude = sharedPreferences.getFloat(LATITUDE_KEY, DEFAULT_COORDINATES)
         val longitude = sharedPreferences.getFloat(LONGITUDE_KEY, DEFAULT_COORDINATES)
-        return LastKnownCoordinates(latitude.toDouble(), longitude.toDouble())
+        return if (latitude == DEFAULT_COORDINATES && longitude == DEFAULT_COORDINATES) null
+        else LastKnownCoordinates(latitude.toDouble(), longitude.toDouble())
     }
 
     companion object {

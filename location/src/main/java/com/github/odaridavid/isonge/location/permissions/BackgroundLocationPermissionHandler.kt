@@ -23,7 +23,7 @@ import androidx.core.content.ContextCompat
 import com.github.odaridavid.isonge.location.ILocationPermissionsHandler
 
 @RequiresApi(Build.VERSION_CODES.Q)
-internal abstract class BackgroundLocationPermissionHandler(
+class BackgroundLocationPermissionHandler(
     private val context: Activity
 ) : ILocationPermissionsHandler {
 

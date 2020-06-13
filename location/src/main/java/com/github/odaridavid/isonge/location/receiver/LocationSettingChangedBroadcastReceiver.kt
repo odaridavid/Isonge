@@ -18,15 +18,18 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.location.LocationManager
-import android.widget.Toast
-
+import androidx.core.location.LocationManagerCompat
+import com.github.odaridavid.isonge.location.utils.LocationUtils
 
 class LocationSettingChangedBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action?.equals(LocationManager.MODE_CHANGED_ACTION) == true) {
-            //TODO Handle Location Setting Changes
-            Toast.makeText(context, "Location Setting Changed", Toast.LENGTH_SHORT).show()
+            val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            if (LocationManagerCompat.isLocationEnabled(lm))
+                LocationUtils.setIsLocationEnabled(true)
+            else
+                LocationUtils.setIsLocationEnabled(false)
         }
     }
 

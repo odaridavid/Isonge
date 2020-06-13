@@ -13,14 +13,10 @@
  **/
 package com.github.odaridavid.isonge
 
-import android.os.Build
-import androidx.annotation.IntRange
+import android.content.pm.PackageManager
 
-internal object SdkUtils {
-    fun versionFrom(
-        @IntRange(
-            from = Build.VERSION_CODES.BASE.toLong(),
-            to = Build.VERSION_CODES.Q.toLong()
-        ) versionCode: Int
-    ): Boolean = Build.VERSION.SDK_INT >= versionCode
+internal object PermissionUtils {
+    fun IntArray.permissionGranted(): Boolean {
+        return get(0) == PackageManager.PERMISSION_GRANTED
+    }
 }
