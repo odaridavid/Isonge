@@ -2,28 +2,44 @@ package com.github.odaridavid.isonge
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.github.odaridavid.isonge.PermissionUtils.permissionGranted
 import com.github.odaridavid.isonge.SdkUtils.versionFrom
 import com.github.odaridavid.isonge.location.ILocationPermissionRationaleListener
 import com.github.odaridavid.isonge.location.ILocationPermissionsHandler
 import com.github.odaridavid.isonge.location.permissions.ForegroundLocationPermissionsHandler
+import com.github.odaridavid.isonge.location.utils.LocationUtils
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-//TODO Check if rationale is being shown before running removeRationale()
+
 internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionRationaleListener {
 
     val permHandler: ILocationPermissionsHandler by lazy {
         ForegroundLocationPermissionsHandler(this)
     }
+    private var locationSettingsDialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (versionFrom(Build.VERSION_CODES.M)) {
             window.decorView.systemUiVisibility = setSystemIconsVisibilityOnWhite()
             setSystemBarsToWhite()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!LocationUtils.isLocationEnabled(this)) {
+            showLocationDisabledDialog()
+        }
+        LocationUtils.isLocationEnabled.observe(this) { isEnabled ->
+            if (isEnabled) {
+                hideLocationDisabledDialog()
+                showLastKnownLocation()
+            }
         }
     }
 
@@ -78,6 +94,24 @@ internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionR
     }
 
     /**
+     * If location setting changes to off will be called
+     */
+    private fun showLocationDisabledDialog() {
+        locationSettingsDialog = MaterialAlertDialogBuilder(this)
+            .setCancelable(false)
+            .setTitle("Location Disabled")
+            .setMessage("Enable location to continue using the app.")
+            .show()
+    }
+
+    /**
+     * If location setting changes to on will be called
+     */
+    private fun hideLocationDisabledDialog() {
+        locationSettingsDialog?.dismiss()
+    }
+
+    /**
      * Centers in on users last known location
      */
     abstract fun showLastKnownLocation()
@@ -91,4 +125,6 @@ internal abstract class BaseActivity : AppCompatActivity(), ILocationPermissionR
      * If foreground location permission is granted remove rationale
      */
     abstract fun removeRationale()
+
 }
+

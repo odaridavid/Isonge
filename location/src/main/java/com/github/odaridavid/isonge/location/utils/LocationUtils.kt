@@ -13,6 +13,9 @@
  **/
 package com.github.odaridavid.isonge.location.utils
 
+import android.content.Context
+import android.location.LocationManager
+import androidx.core.location.LocationManagerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
@@ -26,6 +29,11 @@ object LocationUtils {
 
     fun setIsLocationEnabled(isEnabled: Boolean) {
         _isLocationEnabled.value = isEnabled
+    }
+
+    fun isLocationEnabled(context: Context): Boolean {
+        val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return LocationManagerCompat.isLocationEnabled(lm)
     }
 
 }
