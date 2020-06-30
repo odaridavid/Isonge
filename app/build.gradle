@@ -48,7 +48,7 @@ android {
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
-            manifestPlaceholders = [mapsApiKey: "AIzaSyAacS_rwbNh-GjuYEIYbX2Kmfg1ezYJcEc"]
+            manifestPlaceholders = [mapsApiKey: "Your Debug Key"]
         }
 
         release {
@@ -56,7 +56,7 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            manifestPlaceholders = [mapsApiKey: "AIzaSyAeisvHXCmtEm6KRLDA2zNhGyApXRpXzTk"]
+            manifestPlaceholders = [mapsApiKey: "Your Release Key"]
         }
 
     }
